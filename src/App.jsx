@@ -17,14 +17,10 @@ export const goods = [
 
 export const App = () => {
   const [value, setValue] = useState('Jam');
-  const selectGood = e => {
-    const { target } = e;
+  const selectGood = good => {
+    const goodIndex = goods.findIndex(el => el === good);
 
-    const targetIndex = [...document.querySelectorAll('.button')].findIndex(
-      el => el === target,
-    );
-
-    setValue(goods[targetIndex]);
+    setValue(goods[goodIndex]);
   };
 
   const clearGood = () => {
@@ -37,8 +33,8 @@ export const App = () => {
         <tr data-cy="Good">
           <td>
             <button
-              onClick={e => {
-                selectGood(e);
+              onClick={() => {
+                selectGood(good);
               }}
               data-cy="AddButton"
               type="button"
